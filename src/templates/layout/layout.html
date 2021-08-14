@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MY WEB</title>
+        <link href='https://unpkg.com/boxicons@2.0.8/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&display=swap" rel="stylesheet"> 
+        <script src="{% static 'JS/menu.js' %}" defer></script>
+        {% block link %}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <img src="{% static 'IMG/logo.png'%}">
+            <nav>
+
+                {% if user.is_authenticated %} 
+                    <a href="{% url 'logout'%}">LOG OUT</a>
+                {% else %}
+                    <a href="{% url 'login'%}">LOG IN</a>
+                
+                    <a href="{% url 'register'%}">REGISTER</a>
+
+                {% endif %}
+                {% if user.is_staff %} 
+
+                {% else %}
+                    <a href="{% url 'cart'%}">CARRITO</a>
+                {% endif %}
+            </nav>
+            <button onclick="desplegarMenu()"><i class='bx bx-menu'></i></button>
+        </header>
+        
+        <nav id="menu-hamburger-js" class="menu-hamburger">
+            <a href="{% url 'home'%}">HOME</a>
+            <div class="line"></div>
+            <button onclick="desplegarCategorias()" id="btn-category-menu" class="desplegar-categorias">CATEGORIAS</button>
+            <div class="line"></div>
+            <a href="{% url 'nosotros' %}">NOSOTROS</a>
+            <div class="line"></div>
+            <a href="mailto:tomasfgraziano@hotmail.com">CONTACTO</a>
+            <div class="line"></div>
+            {% if user.is_staff %}
+                <a class="new-product-mod" href="{% url 'agregar_producto' %}">+</a>
+                <div class="line"></div>
+            {% endif %}
+            <form method="POST" action="{% url 'search' %}">{% csrf_token %}
+                <input  type="search" placeholder="Search" aria-label="Search" name="busqueda">
+                <button for="search" type="submit">BUSCAR</button>
+            </form>
+        </nav>
+        <nav id="menu-category-js" class="menu-category">
+            <button onclick="desplegarCategorias()"><i class='bx bx-left-arrow-alt'></i></button>
+            <div class="line"></div>
+            <form method="POST" action="{% url 'search_categoria' %}">{% csrf_token %}    
+                <input style="display:none" value="Placa de Video" type="search" placeholder="Search" aria-label="Search" name="busqueda">
+                <button type="submit">PLACA DE VIDEO</button>
+            </form>
+            <div class="line"></div>
+            <form method="POST" action="{% url 'search_categoria' %}">{% csrf_token %}    
+                <input style="display:none" value="Procesador" type="search" placeholder="Search" aria-label="Search" name="busqueda">
+                <button type="submit">PROCESADOR</button>
+            </form>
+            <div class="line"></div>
+            <form method="POST" action="{% url 'search_categoria' %}">{% csrf_token %}    
+                <input style="display:none" value="Mouse" type="search" placeholder="Search" aria-label="Search" name="busqueda">
+                <button type="submit">MOUSE</button>
+            </form>
+            <div class="line"></div>    
+            <form method="POST" action="{% url 'search_categoria' %}">{% csrf_token %}    
+                <input style="display:none" value="Teclado" type="search" placeholder="Search" aria-label="Search" name="busqueda">
+                <button type="submit">TECLADO</button>
+            </form>
+        </nav>
+        <main>
+            {% block content %}
+
+            {% endblock %}
+        </main>
+        <footer>
+            <h2> ELECTRONIC APP</h2>
+            <p>Graziano Tomas</p>
+        </footer>
+    </body>
+
+</html>
