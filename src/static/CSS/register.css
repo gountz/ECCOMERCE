@@ -1,0 +1,97 @@
+@import 'layout/layout.css';
+
+header{
+    width:100vw;
+}
+section{
+    background:var(--fondo-color-section);
+    min-height:25em;
+    margin-top:2%;
+}
+section>h2{
+    text-align:center;
+    padding:.5% 0;
+}
+section>form{
+    width: 100%;
+    min-height: 24em;
+    display:grid;
+    grid-template-columns:35% 65%;
+    grid-template-rows:17% 17% 16% 16% 16% auto;
+}
+
+.username-label{
+    grid-column:1;
+    grid-row:1;
+}
+.username-input{
+    grid-column:2;
+    grid-row:1;
+}
+.helptext{
+    text-align:center;
+    margin:auto 0;
+    grid-column:1/3;
+    grid-row:2;
+}
+
+.email-label{
+    grid-column:1;
+    grid-row:3;
+}
+.email-input{
+    grid-column:2;
+    grid-row:3;
+}
+
+.password1-label{
+    grid-column:1;
+    grid-row:4;
+}
+.password1-input{
+    grid-column:2;
+    grid-row:4;
+}
+
+.password2-label{
+    grid-column:1;
+    grid-row:5;
+}
+.password2-input{
+    grid-column:2;
+    grid-row:5;
+}
+
+section>form>input{
+    text-align:center;
+    font-size:22px;
+    background:transparent;
+    border: none;
+    border-bottom: 1px solid #000;
+    border-radius:2px;
+    margin:auto 0;
+    height:50%;
+    width:60%;
+}
+
+section>form>label{
+    margin:auto 0;
+    margin-right:5%;
+    text-align:end;
+}
+section>form>button{
+    font-weight:bold ;
+    cursor: pointer;
+    margin: auto auto;
+    color:#000;
+    background: var(--color-btn);
+    border:none;
+    border-radius: 15px;
+    grid-column:1/3;
+    grid-row:6;
+    width:15%;
+    height:55%;
+}
+section>form>button:hover{
+    background:var(--color-btn-hover);
+}

@@ -1,0 +1,21 @@
+@import 'layout/layout.css';
+
+header{
+    width: 100vw;
+}
+section{
+    background:var(--fondo-color-section);
+    height:23em;
+    margin-top:2%;
+    padding:2%;
+}
+section>h2{
+    text-align:center;
+}
+section>img{
+    float:right;
+    margin-top:4%;
+}
+section>p{
+    margin-top:1%;
+}

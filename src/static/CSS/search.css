@@ -1,0 +1,24 @@
+@import 'layout/layout.css';
+header{
+    width:100vw;
+}
+section{
+    min-height:19em;
+    background:var(--fondo-color-section);
+    margin:3% 0;
+    padding:3% 5%;
+}
+section>h2{
+    text-align:center;
+    color:#000;
+}
+
+section>ul{
+    margin:3% 0;
+}
+section>ul>li{
+    list-style:none;
+}
+section>ul>li>a{
+    text-decoration: none;
+}

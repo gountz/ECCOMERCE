@@ -1,0 +1,10 @@
+@import 'layout/layout.css';
+
+section{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:3%;
+    height:24em;
+    background:var(--fondo-color-section);
+}
