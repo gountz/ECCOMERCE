@@ -1,0 +1,35 @@
+{% extends 'layout/layout.html' %}
+
+{% load static %}
+
+{% block link %}
+<link href="{% static 'CSS/agregar_producto.css'%}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Agregar Producto</h2>
+    <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <label class="form-title-label" for="id_title">Titulo:</label>
+        <input class="form-title-input"  type="text" name="title" maxlength="80" required="" id="id_title">
+        <label class="form-category-label"  for="id_category">Categoria:</label>
+        <select  class="form-category-input"  name="category" id="id_category">
+            <option value="Placa de Video" selected="">Placa de Video</option>
+          
+            <option value="Procesador">Procesador</option>
+          
+            <option value="Mouse">Mouse</option>
+          
+            <option value="Teclado">Teclado</option>
+          
+        </select>
+        <label  class="form-imagen-label"  for="id_imagen">Imagen:</label>
+        <input class="form-imagen-input" type="file" name="imagen" accept="image/*" id="id_imagen">
+        <label class="form-description-label" for="id_description">Description:</label>
+        <textarea class="form-description-input" name="description" cols="40" rows="10" maxlength="155" required="" id="id_description"></textarea>
+        <label class="form-precio-label" for="id_precio">Precio:  $</label>
+        <input class="form-precio-input" type="number" name="precio" value="0" required="" id="id_precio">
+        <button class="form-button-crear" type="submit">CREAR</button>
+    </form>
+</section>
+{% endblock %}

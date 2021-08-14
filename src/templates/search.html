@@ -1,0 +1,26 @@
+{% extends 'layout/layout.html' %}
+{% load static %}
+
+{% block link %}
+<link href="{% static 'CSS/search.css'%}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+<section>
+    {% if busqueda %}
+    <h2>Lista de Productos: <span>{{busqueda|upper}} </span></h2>
+    {% else %}
+        <h2>No se ha realizado ninguna busqueda</h2>
+    {% endif %}
+    <ul>
+        {% for prod_tit in title_producto %}
+            <li><a href="{% url 'show_product' prod_tit.id %}">{{prod_tit.title}} | {{prod_tit.description}}</a></li>
+        {% endfor %}
+        {% for prod_descrip in description_producto %}
+            <li><a href="{% url 'show_product' prod_descrip.id %}">{{prod_descrip.title}} |{{prod_tit.description}}</a></li>
+        {% endfor %}
+        {% for categoria in category_producto  %}
+            <li><a href="{% url 'show_product' categoria.id %}">{{categoria.title}} | {{categoria.description}}</a></li>
+        {% endfor %}
+</section>
+{% endblock %}

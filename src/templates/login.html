@@ -1,0 +1,19 @@
+{% extends 'layout/layout.html' %}
+{% load static %}
+
+{% block link %}
+<link href="{% static 'CSS/login.css'%}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Iniciar Sesion</h2>
+    <form method="POST">{% csrf_token %}
+        <label class="form-username-label" for="id_username">Username:</label>
+        <input class="form-username-input" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
+        <label class="form-password-label" for="id_password">Password:</label>
+        <input class="form-password-input" type="password" name="password" autocomplete="current-password" required="" id="id_password">
+        <button type="submit">INGRESAR</button>
+    </form>
+</section>
+{% endblock %}

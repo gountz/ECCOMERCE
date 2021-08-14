@@ -1,0 +1,39 @@
+{% extends 'layout/layout.html' %}
+{% load static %}
+{% load cart_tags %}
+{% block link %}
+<link href="{% static 'CSS/Cart.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <section>   
+            {% if user.is_authenticated %}
+                <span>{{user.username|upper}}</span>
+            {% else %}
+                <span>User</span>
+            {% endif %}
+            <ul>
+                {% if request.session.cart.items %}
+                    {% for key, value in request.session.cart.items %}
+                        <li>
+                            {{value.title}} 
+                            <div class="separator"></div> 
+                            <span><a href="{% url 'decrement_product' value.product_id %}"><i class='bx bx-minus'></i></a>
+                                    {{value.quantity}}
+                            <a href="{% url 'add_product' value.product_id %}"><i class='bx bx-plus'></i></a></span>
+                            <div class="separator"></div>
+                            $ {{value.precio|multiple:value.quantity}} 
+                            <div class="separator"></div>
+                            <a href="{% url 'remove_product' value.product_id %}"><i class='bx bxs-trash'></i></a>
+                            <div class="separator"></div>  
+                        </li>
+                    {% endfor %}
+                    <li class="section-lista-total">Total: $ {{cart_total_amout}}</li>
+                {% else %}
+                    <li>No hay items agregados</li>
+                {% endif %}
+            </ul>
+            <a class="section-carrito-vaciar" href="{% url 'clear_cart' %}"> VACIAR CARRITO </a>
+            <a class="section-carrito-comprar" href="#"> COMPRAR </a>
+    </section>
+{% endblock %}

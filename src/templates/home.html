@@ -1,0 +1,35 @@
+{% extends 'layout/layout.html'%}
+{% load static %}
+{% block link %}
+
+<link href="{% static 'CSS/home.css' %}" rel="stylesheet" type="text/css"> 
+{% endblock %}
+
+
+{% block content %}
+<section class="main-section-principal">
+    {% for producto in  product_main %}
+        <article> 
+           <img src="{{producto.imagen.url}}">
+           {% if user.is_staff %}
+                <a href="{% url 'editar_producto' producto.id %}">Ver</a>
+           {% else %}
+                <a href="{% url 'show_product' producto.id %}">Ver</a>
+            {% endif %}
+        </article>
+    {% endfor %}
+</section>
+<section class="main-section-secondary">
+    <h2>Lista de Productos</h2>
+    <ul>
+        {% for producto2 in  product_secondary %}
+            {% if user.is_staff %}
+                <li><a href="{% url 'editar_producto' producto2.id %}">{{producto2.title}}: {{producto2.description}}</a></li>
+            {% else %}
+                <li><a href="{% url 'show_product' producto2.id %}">{{producto2.title}}: {{producto2.description}}</a></li>
+            {% endif %}
+        {% endfor %}
+
+    </ul>
+</section>
+{% endblock %}

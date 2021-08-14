@@ -1,0 +1,19 @@
+{% extends 'layout/layout.html' %}
+{% load static %}
+
+
+{% block link %}
+    <link href="{% static 'CSS/show_product.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+<section>
+    <h2>{{prd.title}}</h2>
+    <h3>{{prd.category}}</h3>
+    <img src="{{prd.imagen.url}}">
+    <p class="description">{{prd.description}}</p>
+    <h3 class="precio-label">Precio: $</h3>
+    <p class="precio-show">{{prd.precio}}</p>
+    <a href="{% url 'add_product' prd.id %}">Añadir</a>
+</section>
+{% endblock %}

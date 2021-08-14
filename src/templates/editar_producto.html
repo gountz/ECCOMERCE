@@ -1,0 +1,21 @@
+{% extends 'layout/layout.html' %}
+{% load static %}
+
+{% block link %}
+    <link href="{% static 'CSS/editar_producto.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+<section>
+    <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <p class="form-title">{{form.title}}</p>
+        <p class="form-categoria" > Categoria: {{form.category}}</p>
+        <p class="form-image"><span>Imagen: </span><br>{{form.imagen}}</p>
+        <p class="form-description">{{form.description}}</p>
+        <p class="form-precio">Precio: ${{form.precio}}</p>
+        <button type="submit">EDITAR</button>
+        <a class="from-delete" href="{% url 'borrar_producto' tarea.id %}">BORRAR</a>
+    </form>
+
+</section>
+{% endblock %}
